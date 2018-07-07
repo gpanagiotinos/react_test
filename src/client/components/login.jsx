@@ -5,7 +5,8 @@ import axios from 'axios'
 
 class Login extends React.Component {
   componentDidMount () {
-    axios.post('http://localhost:3000/users')
+    console.log('comp mount')
+    axios.post('http://localhost:3000/user/create')
       .then(function (response) {
         console.log(response)
       })

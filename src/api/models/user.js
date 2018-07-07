@@ -1,5 +1,5 @@
 module.exports = function (sequelize, DataTypes) {
-  return sequelize.define('users', {
+  return sequelize.define('user', {
     user_id: {
       type: DataTypes.UUID,
       autoIncrement: true,
