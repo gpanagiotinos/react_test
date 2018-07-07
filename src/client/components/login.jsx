@@ -1,8 +1,18 @@
 import React from 'react'
 import Input from '../ui-components/input.jsx'
+import axios from 'axios'
 // import ReactDOM from 'react-dom'
 
 class Login extends React.Component {
+  componentDidMount () {
+    axios.post('http://localhost:3000/users')
+      .then(function (response) {
+        console.log(response)
+      })
+      .catch(function (error) {
+        console.log(error)
+      })
+  }
   render () {
     return (
       <div className='columns has-items-centered is-multiline is-mobile'>
