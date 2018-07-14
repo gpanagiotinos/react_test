@@ -6,7 +6,7 @@ class TopNavBar extends React.Component {
 		return (
 			<nav className="navbar is-fixed-top">
 				<div className="navbar-end">
-					<RouterLink to="/" text="Home" />
+					<RouterLink to="/home" text="Home" />
 					<RouterLink to="/login" text="Login" />
 					<RouterLink to="/register" text="Register" />
 				</div>

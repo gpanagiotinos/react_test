@@ -1,4 +1,5 @@
 import {NavLink} from 'react-router-dom'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import React from 'react'
 
 class RouterLink extends React.Component{
@@ -12,7 +13,7 @@ class RouterLink extends React.Component{
 	}
 	handleLinkIcon () {
 		if (this.state.icon !== undefined) {
-			return <span className='icon'><i className={'fa fa-' + icon}></i></span>
+			return <span className='icon'><FontAwesomeIcon icon={['fas', this.state.icon]} /></span>
 		} else {
 			return null
 		}
@@ -21,7 +22,7 @@ class RouterLink extends React.Component{
 	render () {
 		return (
 			<div>
-				<NavLink to={this.state.to} className='navbar-item'>{this.handleLinkIcon()}{this.state.text}</NavLink>
+				<NavLink to={this.state.to} activeClassName='has-text-info'  className='navbar-item'>{this.handleLinkIcon()}{this.state.text}</NavLink>
 			</div>
 		)
 	}

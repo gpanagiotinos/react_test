@@ -1,5 +1,6 @@
 import React from 'react'
 import Input from '../ui-components/input.jsx'
+import Button from '../ui-components/button.jsx'
 import axios from 'axios'
 // import ReactDOM from 'react-dom'
 
@@ -22,6 +23,9 @@ class Login extends React.Component {
         </div>
         <div className='column is-12 field has-addons'>
           <Input placeholder='password' type='password' />
+        </div>
+        <div className='column is-12 field has-addons'>
+          <Button text='Login' bulmatype='is-success' />
         </div>
       </div>
     )
