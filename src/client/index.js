@@ -1,10 +1,18 @@
 import React from 'react'
+import { BrowserRouter as Router } from 'react-router-dom'
 import ReactDOM from 'react-dom'
-import Login from './components/login.jsx'
-import Register from './components/Register.jsx'
+import TopNavBar from './components/topnavbar.jsx'
+import Main from './components/main.jsx'
 import './assets/scss/main.scss'
 const App = () => {
-  return (<div><Register /></div>)
+  return (
+	  	<Router>
+		  	<div>
+		  		<TopNavBar />
+		  		<Main />
+		  	</div>
+	  	</Router>
+  	)
 }
-
 ReactDOM.render(<App />, document.getElementById('app'))
+
