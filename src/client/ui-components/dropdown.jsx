@@ -3,7 +3,7 @@ import Input from './input.jsx'
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 
 class DropDown extends React.Component {
-  constructor(props) {
+  constructor (props) {
     super(props)
     this.state = {
       click: false,
@@ -24,9 +24,10 @@ class DropDown extends React.Component {
   }
   // handle click to open dropdown
   handleClick () {
+    console.log('click')
     this.setState((prevState, props) => ({
       click: !prevState.click,
-      searchable: !prevState.searchable,
+      searchable: props.searchable !== undefined ? props.searchable : false,
       content: props.content,
       object: typeof this.props.content[0] === 'object'
         ? true
@@ -36,17 +37,22 @@ class DropDown extends React.Component {
   // handle select one of dropdown items
   handleSelect(index) {
     if (index === this.state.select) {
-      this.setState((prevState, props) => ({select: null, placeholder: props.placeholder}))
+      console.log('select1')
+      this.setState((prevState, props) => ({select: null, placeholder: props.placeholder, searchable: false}))
     } else {
+      console.log('select2')
       if (this.props.placeholder !== undefined) {
         this.setState((prevState, props) => ({
           select: index,
+          click: false,
+          searchable: false,
           placeholder: this.state.object
             ? prevState.content[index][props.name]
             : prevState.content[index]
         }))
       } else {
-        this.setState(prevState => ({select: index}))
+        console.log('select3')
+        this.setState(prevState => ({select: index, searchable: false}))
       }
     }
   }
@@ -139,11 +145,12 @@ class DropDown extends React.Component {
       return null
     }
   }
-  handleDropDownSearchable() {
+  handleDropDownSearchable () {
+    console.log(this.state.searchable)
     if (this.state.searchable) {
       return <Input id='searchable' autofocus='true' value='' onChange={this.handleSearch} placeholder={this.state.placeholder} type='text'/>
     } else {
-      return <button className='button' aria-haspopup='true' aria-controls='dropdown-menu'>
+      return <button className='button' aria-haspopup='true' aria-controls='dropdown-menu' onClick={this.handleClick}>
         {this.handleDropDownPlaceholder()}
         {this.handleDropDownIcon()}
       </button>
@@ -152,7 +159,7 @@ class DropDown extends React.Component {
   render() {
     return (<div className={this.state.click
         ? 'dropdown is-active'
-        : 'dropdown'} onClick={this.handleClick}>
+        : 'dropdown'}>
       <div className='dropdown-trigger'>
         {this.handleDropDownSearchable()}
       </div>
