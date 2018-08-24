@@ -1,8 +1,9 @@
 import { createStore, combineReducers } from 'redux'
-import { breakpoint } from './reducer'
+import { breakpoint, role } from './reducer'
 // Combine Reducers
 const reducers = combineReducers({
-  breakpoint: breakpoint
+  breakpoint: breakpoint,
+  role: role
 })
 
 const store = createStore(reducers)

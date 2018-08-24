@@ -5,29 +5,39 @@ import axios from 'axios'
 // import ReactDOM from 'react-dom'
 
 class Login extends React.Component {
-  componentDidMount () {
-    console.log('comp mount')
-    axios.post('http://localhost:3000/user/create')
-      .then(function (response) {
-        console.log(response)
-      })
-      .catch(function (error) {
-        console.log(error)
-      })
+  constructor (props) {
+    super(props)
+    this.state = {
+      username: '',
+      password: ''
+    }
+    this.handleLoginSubmit = this.handleLoginSubmit.bind(this)
+    this.handleUsernameInput = this.handleUsernameInput.bind(this)
+  }
+  handleLoginSubmit () {
+    console.log(this.state.password, this.state.username)
+  }
+  handleUsernameInput (value) {
+    console.log(value)
+    this.setState((prevState, props) => ({
+      username: value.target.value
+    }))
   }
   render () {
     return (
-      <div className='columns has-items-centered is-multiline is-mobile'>
-        <div className='column is-12 field has-addons'>
-          <Input placeholder='username' type='text' />
+      <form>
+        <div className='columns has-items-centered is-multiline is-mobile'>
+          <div className='column is-12 field has-addons'>
+            <Input placeholder='username' username={(username) => { this.handleInput(username) }} type='text' />
+          </div>
+          <div className='column is-12 field has-addons'>
+            <Input placeholder='password' password={(password) => { this.handleInput(password) }} type='password' />
+          </div>
+          <div className='column is-12 field has-addons'>
+            <Button onClick={this.handleLoginSubmit} text='Login' bulmatype='is-success' />
+          </div>
         </div>
-        <div className='column is-12 field has-addons'>
-          <Input placeholder='password' type='password' />
-        </div>
-        <div className='column is-12 field has-addons'>
-          <Button text='Login' bulmatype='is-success' />
-        </div>
-      </div>
+    </form>
     )
   }
 }

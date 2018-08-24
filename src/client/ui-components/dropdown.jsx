@@ -17,14 +17,14 @@ class DropDown extends React.Component {
       name: this.props.name,
       object: false,
       searchable: false,
-      searchtext: ''
+      searchtext: '',
+      onSelectValue: this.props.onSelectValue
     }
     this.handleClick = this.handleClick.bind(this)
     this.handleSearch = this.handleSearch.bind(this)
   }
   // handle click to open dropdown
   handleClick () {
-    console.log('click')
     this.setState((prevState, props) => ({
       click: !prevState.click,
       searchable: props.searchable !== undefined ? props.searchable : false,
@@ -35,12 +35,12 @@ class DropDown extends React.Component {
     }))
   }
   // handle select one of dropdown items
-  handleSelect(index) {
+  handleSelect (index) {
     if (index === this.state.select) {
-      console.log('select1')
+      this.state.onSelectValue(this.state.content[index])
       this.setState((prevState, props) => ({select: null, placeholder: props.placeholder, searchable: false}))
     } else {
-      console.log('select2')
+      this.state.onSelectValue(this.state.content[index])
       if (this.props.placeholder !== undefined) {
         this.setState((prevState, props) => ({
           select: index,
@@ -51,7 +51,7 @@ class DropDown extends React.Component {
             : prevState.content[index]
         }))
       } else {
-        console.log('select3')
+        this.state.onSelectValue(this.state.content[index])
         this.setState(prevState => ({select: index, searchable: false}))
       }
     }
@@ -146,7 +146,6 @@ class DropDown extends React.Component {
     }
   }
   handleDropDownSearchable () {
-    console.log(this.state.searchable)
     if (this.state.searchable) {
       return <Input id='searchable' autofocus='true' value='' onChange={this.handleSearch} placeholder={this.state.placeholder} type='text'/>
     } else {

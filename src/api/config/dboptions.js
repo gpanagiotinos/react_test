@@ -5,7 +5,8 @@ const db = new sqlite3.Database(dbPath)
 const roles =  ['Admin', 'Guest']
 // create db tables
 db.run('DROP TABLE IF EXISTS roles')
-db.run('CREATE TABLE IF NOT EXISTS users(user_id integer primary key, firstname text, lastname text, username text, email text, password text, role integer)')
+// db.run('DROP TABLE IF EXISTS users')
+db.run('CREATE TABLE IF NOT EXISTS users(user_id integer primary key, firstname text, lastname text, username text, email text, password text, role_id integer, createdAt numeric, updatedAt numeric)')
 db.run('CREATE TABLE IF NOT EXISTS roles(role_id integer primary key, role_name text)')
 db.run('INSERT INTO roles(role_name) VALUES' + roles.map((roles) => '(?)').join(','), roles, (error) => {
 	if (error) {

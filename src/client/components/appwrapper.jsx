@@ -1,6 +1,6 @@
 import React from 'react'
 import {breakpoints} from '../utils/responsiveHelpers'
-import {setActiveBreakpoint} from '../store/action'
+import {setActiveBreakpoint, setActiveManagmentRole} from '../store/action'
 import {connect} from 'react-redux'
 class AppWrapper extends React.Component {
   constructor (props) {
